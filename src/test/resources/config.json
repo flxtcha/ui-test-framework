@@ -1,0 +1,5 @@
+{
+  "browser": "CHROME",
+  "headless": true,
+  "baseUrl": "https://www.saucedemo.com"
+}
