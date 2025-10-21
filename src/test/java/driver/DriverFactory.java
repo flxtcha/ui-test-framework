@@ -8,14 +8,16 @@ import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
-import static driver.BrowserType.CHROME;
 import static driver.BrowserType.valueOf;
+import static java.lang.System.getenv;
 
 public class DriverFactory {
 
     public static WebDriver create() {
         Config config = ConfigManager.get();
-        BrowserType browser = config.getBrowser() == null ? CHROME : valueOf(config.getBrowser().trim().toUpperCase());
+        BrowserType browser = getenv("BROWSER") == null
+                ? valueOf(config.getBrowser().trim().toUpperCase())
+                : valueOf(getenv("BROWSER").trim().toUpperCase());
 
         return switch (browser) {
             case CHROME -> {
