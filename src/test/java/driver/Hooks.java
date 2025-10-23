@@ -14,16 +14,16 @@ public class Hooks {
 
     @Before
     public void setUp() {
-        WebDriver webDriver = DriverFactory.create();
-        THREAD_LOCAL.set(webDriver);
+        THREAD_LOCAL.set(DriverFactory.create());
+        WebDriver webDriver = getDriver();
         webDriver.manage().window().maximize();
         webDriver.get(ConfigManager.get().getBaseUrl());
     }
 
     @After
     public void tearDown() {
-        WebDriver d = THREAD_LOCAL.get();
-        if (d != null) d.quit();
+        WebDriver webDriver = getDriver();
+        if (webDriver != null) webDriver.quit();
         THREAD_LOCAL.remove();
     }
 }

@@ -22,7 +22,7 @@ public class DriverFactory {
         return switch (browser) {
             case CHROME -> {
                 ChromeOptions options = new ChromeOptions();
-                if (config.isHeadless()) options.addArguments("--headless=new");
+                if (config.isHeadless()) options.addArguments("--headless=new", "--guest");
                 yield new ChromeDriver(options);
             }
             case FIREFOX -> {
@@ -32,7 +32,7 @@ public class DriverFactory {
             }
             case EDGE -> {
                 EdgeOptions options = new EdgeOptions();
-                if (config.isHeadless()) options.addArguments("--headless=new");
+                if (config.isHeadless()) options.addArguments("--headless=new", "--guest");
                 yield new EdgeDriver(options);
             }
         };
